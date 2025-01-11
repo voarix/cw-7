@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import MenuItem from "./components/MenuItem.tsx";
+import Order from "./components/Order.tsx";
 
 interface MenuItemState {
   name: string;
@@ -35,16 +36,44 @@ const App = () => {
     console.log(menu);
   };
 
+  const orders = menu.filter((item) => item.count > 0);
+
+  const onDeleteOrder = (nameOrder: string) => {
+    setMenu(
+      menu.map((item) => {
+        if (nameOrder === item.name) {
+          return {
+            ...item,
+            count: item.count - 1,
+          };
+        }
+        return item;
+      }),
+    );
+    console.log(menu);
+  };
+
   return (
     <>
-      {menu.map((item, index) => (
-        <MenuItem
-          key={index}
-          menuItemName={item.name}
-          menuItemPrice={item.price}
-          onAddOrder={() => onAddOrder(index)}
-        />
-      ))}
+      <div>
+        <div>
+          {
+            orders.length > 0 ? (orders.map((item, index) => (
+              <Order key={index} orderName={item.name} orderCount={item.count} onDeleteOrder={() => onDeleteOrder(item.name)}/>
+            ))) : (<p>Orders is empty</p>)
+          }
+        </div>
+        <div>
+          {menu.map((item, index) => (
+            <MenuItem
+              key={index}
+              menuItemName={item.name}
+              menuItemPrice={item.price}
+              onAddOrder={() => onAddOrder(index)}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 };
