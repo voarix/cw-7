@@ -7,9 +7,9 @@ interface MenuProps {
   onAddOrder: (orderIndex: number) => void;
 }
 
-const Orders: React.FC<MenuProps> = ({menu, onAddOrder}) => {
+const Orders: React.FC<MenuProps> = ({ menu, onAddOrder }) => {
   return (
-    <div style={{width: "60%"}}>
+    <div style={{ width: "60%" }}>
       {menu.map((item, index) => (
         <MenuItem
           key={index}

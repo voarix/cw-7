@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import Order from "./components/Orders/Order.tsx";
 import Menu from "./components/Menu/Menu.tsx";
+import OrdersList from "./components/Orders/OrdersList.tsx";
 
 export interface MenuItemState {
   name: string;
@@ -55,22 +55,15 @@ const App = () => {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
-        <div style={{ width: "35%" }}>
-          {orders.length > 0 ? (
-            orders.map((item, index) => (
-              <Order
-                key={index}
-                orderName={item.name}
-                orderCount={item.count}
-                onDeleteOrder={() => onDeleteOrder(item.name)}
-              />
-            ))
-          ) : (
-            <p>Orders is empty</p>
-          )}
-        </div>
-        <Menu menu={menu} onAddOrder={onAddOrder}/>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "20px",
+        }}
+      >
+        <OrdersList orders={orders} onDeleteOrder={onDeleteOrder} />
+        <Menu menu={menu} onAddOrder={onAddOrder} />
       </div>
     </>
   );
