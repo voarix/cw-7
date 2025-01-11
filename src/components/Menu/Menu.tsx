@@ -2,13 +2,12 @@ import React from "react";
 import MenuItem from "../Menu/MenuItem.tsx";
 import { MenuItemState } from "../../types.ts";
 
-
 interface MenuProps {
   menu: MenuItemState[];
   onAddOrder: (orderIndex: number) => void;
 }
 
-const Menu: React.FC<MenuProps> = ({menu, onAddOrder}) => {
+const Menu: React.FC<MenuProps> = ({ menu, onAddOrder }) => {
   return (
     <div>
       <h2 className="text-center">Add Items:</h2>

@@ -10,7 +10,7 @@ interface OrdersListProps {
 
 const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
   return (
-    <div className="card p-3" style={{maxWidth: "500px", margin: "0 auto"}}>
+    <div className="card p-3" style={{ maxWidth: "500px", margin: "0 auto" }}>
       <h4 className="text-center mb-3">Order Details</h4>
       {orders.length > 0 ? (
         orders.map((item, index) => (
@@ -23,10 +23,12 @@ const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
           />
         ))
       ) : (
-        <p className="text-center text-muted">Orders is empty</p>
+        <p className="text-center text-muted">
+          Orders is empty! <br /> Please add some items!
+        </p>
       )}
 
-      <TotalPrice orders={orders}/>
+      <TotalPrice orders={orders} />
     </div>
   );
 };
