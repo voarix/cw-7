@@ -1,9 +1,9 @@
 import "./App.css";
 import { useState } from "react";
-import MenuItem from "./components/MenuItem.tsx";
-import Order from "./components/Order.tsx";
+import Order from "./components/Orders/Order.tsx";
+import Menu from "./components/Menu/Menu.tsx";
 
-interface MenuItemState {
+export interface MenuItemState {
   name: string;
   price: number;
   count: number;
@@ -55,24 +55,22 @@ const App = () => {
 
   return (
     <>
-      <div>
-        <div>
-          {
-            orders.length > 0 ? (orders.map((item, index) => (
-              <Order key={index} orderName={item.name} orderCount={item.count} onDeleteOrder={() => onDeleteOrder(item.name)}/>
-            ))) : (<p>Orders is empty</p>)
-          }
+      <div style={{ display: "flex", justifyContent: "space-between", padding: "20px" }}>
+        <div style={{ width: "35%" }}>
+          {orders.length > 0 ? (
+            orders.map((item, index) => (
+              <Order
+                key={index}
+                orderName={item.name}
+                orderCount={item.count}
+                onDeleteOrder={() => onDeleteOrder(item.name)}
+              />
+            ))
+          ) : (
+            <p>Orders is empty</p>
+          )}
         </div>
-        <div>
-          {menu.map((item, index) => (
-            <MenuItem
-              key={index}
-              menuItemName={item.name}
-              menuItemPrice={item.price}
-              onAddOrder={() => onAddOrder(index)}
-            />
-          ))}
-        </div>
+        <Menu menu={menu} onAddOrder={onAddOrder}/>
       </div>
     </>
   );
