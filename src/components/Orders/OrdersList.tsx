@@ -1,6 +1,7 @@
 import React from "react";
 import Order from "./Order";
 import { MenuItemState } from "../../App.tsx";
+import TotalPrice from "./TotalPrice.tsx";
 
 interface OrdersListProps {
   orders: MenuItemState[];
@@ -8,8 +9,6 @@ interface OrdersListProps {
 }
 
 const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
-  const totalPrice = orders.reduce((acc, cur) => acc + cur.count * cur.price, 0);
-
   return (
     <div style={{ width: "35%" }}>
       {orders.length > 0 ? (
@@ -26,7 +25,7 @@ const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
         <p>Orders is empty</p>
       )}
 
-      <h3>Total price: {totalPrice}</h3>
+      <TotalPrice orders={orders}/>
     </div>
   );
 };
