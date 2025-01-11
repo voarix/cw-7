@@ -1,7 +1,7 @@
 import React from "react";
 import Order from "./Order";
-import { MenuItemState } from "../../App.tsx";
 import TotalPrice from "./TotalPrice.tsx";
+import { MenuItemState } from "../../types.ts";
 
 interface OrdersListProps {
   orders: MenuItemState[];
@@ -10,7 +10,8 @@ interface OrdersListProps {
 
 const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
   return (
-    <div style={{ width: "35%" }}>
+    <div className="card p-3" style={{maxWidth: "500px", margin: "0 auto"}}>
+      <h4 className="text-center mb-3">Order Details</h4>
       {orders.length > 0 ? (
         orders.map((item, index) => (
           <Order
@@ -22,7 +23,7 @@ const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
           />
         ))
       ) : (
-        <p>Orders is empty</p>
+        <p className="text-center text-muted">Orders is empty</p>
       )}
 
       <TotalPrice orders={orders}/>

@@ -2,20 +2,15 @@ import "./App.css";
 import { useState } from "react";
 import Menu from "./components/Menu/Menu.tsx";
 import OrdersList from "./components/Orders/OrdersList.tsx";
-
-export interface MenuItemState {
-  name: string;
-  price: number;
-  count: number;
-}
+import { MenuItemState } from "./types.ts";
 
 const initialMenu: MenuItemState[] = [
-  { name: "Hamburger", price: 80, count: 0 },
-  { name: "Coffee", price: 70, count: 0 },
-  { name: "Cheeseburger", price: 90, count: 0 },
-  { name: "Tea", price: 50, count: 0 },
-  { name: "Fries", price: 45, count: 0 },
-  { name: "Cola", price: 40, count: 0 },
+  {name: "Hamburger", price: 80, count: 0},
+  {name: "Coffee", price: 70, count: 0},
+  {name: "Cheeseburger", price: 90, count: 0},
+  {name: "Tea", price: 50, count: 0},
+  {name: "Fries", price: 45, count: 0},
+  {name: "Cola", price: 40, count: 0},
 ];
 
 const App = () => {
@@ -55,15 +50,15 @@ const App = () => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "20px",
-        }}
-      >
-        <OrdersList orders={orders} onDeleteOrder={onDeleteOrder} />
-        <Menu menu={menu} onAddOrder={onAddOrder} />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <OrdersList orders={orders} onDeleteOrder={onDeleteOrder}/>
+          </div>
+          <div className="col-md-8">
+            <Menu menu={menu} onAddOrder={onAddOrder}/>
+          </div>
+        </div>
       </div>
     </>
   );
