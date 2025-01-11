@@ -8,6 +8,8 @@ interface OrdersListProps {
 }
 
 const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
+  const totalPrice = orders.reduce((acc, cur) => acc + cur.count * cur.price, 0);
+
   return (
     <div style={{ width: "35%" }}>
       {orders.length > 0 ? (
@@ -16,12 +18,15 @@ const OrdersList: React.FC<OrdersListProps> = ({ orders, onDeleteOrder }) => {
             key={index}
             orderName={item.name}
             orderCount={item.count}
+            orderPrice={item.count * item.price}
             onDeleteOrder={() => onDeleteOrder(item.name)}
           />
         ))
       ) : (
         <p>Orders is empty</p>
       )}
+
+      <h3>Total price: {totalPrice}</h3>
     </div>
   );
 };
